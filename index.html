@@ -111,9 +111,10 @@
 
         /* Hero Section */
         .hero-section {
-    margin-top: 96px;
+    margin-top: 156px;
     height: 90vh;
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1600&h=900&fit=crop') center/cover;
+    background: url('herosectioncollage.png') center/cover;
+filter: contrast(1.1) saturate(1.15);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -181,6 +182,7 @@
     min-height: 460px;
     align-items: center;
     padding: 40px 0;
+    margin: 0;
 }
 
 .content-text {
@@ -227,12 +229,18 @@
     margin-right: 30px;
 }
 
-.content-section:first-of-type .content-image {
+/*
+.content-section:nth-of-type(2) .content-image {
     position: relative;
-    z-index: 15;
-    margin-top: -40px;
+    z-index: 100;
+    margin-top: -60px;
 }
-
+*/
+.content-section:nth-child(4) .content-image {
+    position: relative;
+    z-index: 100;
+    margin-top: -60px;
+}
 /* Fade in animation */
 .fade-in {
     opacity: 0;
@@ -253,19 +261,22 @@
     transform: rotate(-4deg);
     margin: 4px 0;
     position: relative;
-    z-index: 10;
-    margin-bottom: -30px;
+    z-index: 1;
+    margin-bottom: -50px;
+    margin-top: -20px;
 }
 
 .scrolling-banner-inner {
     background: #FFD549;
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     padding: 8px 0;
+    position: relative;
+    z-index: 1;
 }
 
 .banner-content {
     display: flex;
-    animation: scroll 10.7s linear infinite;
+    animation: scroll 4.28s linear infinite;
     white-space: nowrap;
 }
 
@@ -484,6 +495,10 @@
     background: #FFD549; /* permanent yellow */
 }
 
+.content-section.yellow-section {
+    padding-bottom: 0;
+}
+
 .top-navbar.hidden,
 .second-navbar.hidden {
     transform: translateY(-200px);
@@ -629,15 +644,16 @@
     </section>
 
 <!-- Content Section 1 -->
-<section class="content-section yellow-section" id="about">
-<div class="content-text fade-in" style="color: #7B3500;">        <h3>Crafted With <span style="color:#EE202E;">Passion</span></h3>
+<section class="content-section yellow-section" id="about" style="padding-bottom: 0; margin-bottom: 0;">
+<div class="content-text fade-in" style="color: #7B3500;">       
+     <h3>Crafted With <span style="color:#EE202E;">Passion</span></h3>
         <p>At Burgs, we believe in creating the perfect burger experience. Every patty is made from premium, locally-sourced beef, grilled to perfection, and served on our signature brioche buns. Our commitment to quality ingredients and bold flavors sets us apart. We take pride in every burger that leaves our kitchen, ensuring that each bite is a memorable experience.</p>
     </div>
     <div class="content-image fade-in" style="background-image: url('https://images.unsplash.com/photo-1550547660-d9450f859349?w=800&h=600&fit=crop');"></div>
 </section>
 
 <!-- Scrolling Banner -->
-<div class="scrolling-banner">
+<div class="scrolling-banner" style="margin-top: 0;">
     <div class="scrolling-banner-inner">
         <div class="banner-content">
             <span class="banner-item">CLASSIC CHEESE</span>
@@ -677,10 +693,10 @@
 </div>
 
 <!-- Content Section 2 -->
-<section class="content-section" style="background: #FCFAED;">
+<section class="content-section" style="background: #EE202E;">
     <div class="content-image fade-in" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&h=600&fit=crop');"></div>
-    <div class="content-text text-right fade-in" style="color: #7B3500;">        
-        <h3><span style="color:#EE202E;">Quality</span> You Can Taste</h3>
+    <div class="content-text text-right fade-in" style="color: #FCFAED;">        
+        <h3><span style="color:#FFD549;">Quality</span> You Can Taste</h3>
         <p>Our secret lies in the details. From hand-selecting the finest ingredients to perfecting our proprietary sauce blend, we never compromise on quality. Each burger is crafted with care, cooked to order, and served fresh. We believe that great food starts with great ingredients, and that's why we partner with local farmers and suppliers who share our commitment to excellence.</p>
     </div>
 </section>
