@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burgs - Menu</title>
+    <link rel="icon" type="image/png" href="smalllogo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'GeneralSans';
+            src: url('generalsans.otf') format('opentype');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'GeneralSans', sans-serif;
+            overflow-x: hidden;
+            background: #FCFAED;
+        }
+
+        * {
+            font-family: 'GeneralSans', sans-serif;
+        }
+
+        /* Top Navbar */
+        .top-navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: #FCFAED;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .logo {
+            height: 56px;
+            cursor: pointer;
+        }
+
+        .top-nav-item {
+            font-size: 22px;
+            font-weight: 800;
+            color: #7B3500;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-family: 'Unbounded', sans-serif;
+            text-transform: uppercase;
+            padding: 8px 18px;
+            border: 2px solid #FFD549;
+            background: transparent;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .top-nav-item:hover {
+            background: #FFD549;
+            transform: translateY(-2px);
+            color: #EE202E;
+        }
+
+        /* Second Navbar */
+        .second-navbar {
+            position: fixed;
+            top: 96px;
+            width: 100%;
+            background: #FFD549;
+            padding: 20px 0;
+            z-index: 999;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            max-width: 100%;
+        }
+
+        .second-nav-item {
+            color: #7B3500;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 16px;
+            transition: color 0.3s ease;
+            position: relative;
+            font-family: 'Unbounded', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .second-nav-item:hover {
+            color: #EE202E;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 28px;
+            color: #7B3500;
+            cursor: pointer;
+            background: none;
+            border: none;
+            z-index: 999;
+            position: relative;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #FFD549;
+            padding: 120px 20px 20px 20px;
+            z-index: 998;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .mobile-menu-item {
+            color: #7B3500;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 32px;
+            font-family: 'Unbounded', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 15px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-menu-item:hover {
+            color: #EE202E;
+        }
+
+        .top-navbar.hidden,
+        .second-navbar.hidden {
+            transform: translateY(-200px);
+        }
+
+        .top-navbar.menu-open .logo {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .top-navbar.menu-open {
+            background: #FFD549;
+        }
+
+        /* Menu Header Section */
+        .menu-header {
+            margin-top: 176px;
+            padding: 60px 40px 40px 40px;
+            text-align: center;
+            background: #FCFAED;
+        }
+
+        .menu-header h1 {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 800;
+            font-size: 72px;
+            color: #7B3500;
+            margin-bottom: 20px;
+        }
+
+        .menu-header p {
+            font-family: 'GeneralSans', sans-serif;
+            font-size: 24px;
+            color: #7B3500;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            line-height: 1.6;
+        }
+
+        .menu-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .menu-button {
+            padding: 12px 30px;
+            background: transparent;
+            color: #7B3500;
+            border: 2px solid #EE202E;
+            font-size: 18px;
+            font-weight: 800;
+            cursor: pointer;
+            text-decoration: none;
+            font-family: 'Unbounded', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-button:hover {
+            background: #EE202E;
+            color: #FCFAED;
+            transform: translateY(-2px);
+        }
+
+        /* Menu Categories */
+        .menu-categories {
+            padding: 40px 40px 80px 40px;
+            background: #FCFAED;
+        }
+
+        .category-section {
+            margin-bottom: 80px;
+        }
+
+        .category-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .category-header h2 {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 800;
+            font-size: 56px;
+            color: #EE202E;
+            margin-bottom: 10px;
+        }
+
+        .category-divider {
+            display: none;
+        }
+
+        .category-subtext {
+            text-align: center;
+            font-size: 18px;
+            color: #EE202E;
+            margin-top: 15px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .slider-note {
+            font-size: 14px;
+            color: #7B3500;
+            opacity: 0.7;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        .party-box-note {
+            font-size: 13px;
+            color: #7B3500;
+            opacity: 0.65;
+            margin-top: 3px;
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 400;
+        }
+
+        .categories-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .category-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(123, 53, 0, 0.15);
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item-content {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .menu-item-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .menu-item-title {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 800;
+            font-size: 20px;
+            color: #7B3500;
+        }
+
+        .menu-item-logo {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+        }
+
+        .menu-item-description {
+            font-family: 'EB Garamond', serif;
+            font-size: 16px;
+            color: #7B3500;
+            line-height: 1.5;
+            opacity: 0.85;
+        }
+
+        .menu-item-price {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 800;
+            font-size: 20px;
+            color: #EE202E;
+            white-space: nowrap;
+            padding-top: 2px;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 80px 40px;
+            background: #FFD549;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .faq-header h2 {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 800;
+            font-size: 56px;
+            color: #7B3500;
+            margin-bottom: 20px;
+        }
+
+        .faq-container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(123, 53, 0, 0.2);
+        }
+
+        .faq-question {
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .faq-question:hover {
+            opacity: 0.7;
+        }
+
+        .faq-question-text {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 800;
+            font-size: 20px;
+            color: #7B3500;
+            flex: 1;
+        }
+
+        .faq-icon {
+            font-size: 24px;
+            color: #EE202E;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 15px 0 0 0;
+        }
+
+        .faq-answer-text {
+            font-family: 'GeneralSans', sans-serif;
+            font-size: 17px;
+            color: #7B3500;
+            line-height: 1.6;
+            opacity: 0.85;
+        }
+
+        /* Footer */
+        .footer {
+            background: #FCFAED;
+            padding: 40px 40px 20px 40px;
+            display: flex;
+            flex-direction: column;
+            color: #7B3500;
+            gap: 20px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .footer-subtext {
+            font-size: 16px;
+            font-weight: 800;
+            font-family: 'Unbounded', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 1;
+            text-align: center;
+            color: #7B3500;
+            line-height: 1.4;
+        }
+
+        .footer-nav {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 20px 30px;
+            align-self: center;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 14px;
+            color: #7B3500;
+            font-family: 'Unbounded', sans-serif;
+            opacity: 0.7;
+            margin-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .footer-nav-item {
+            color: #7B3500;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+            font-family: 'Unbounded', sans-serif;
+            text-transform: uppercase;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .footer-nav-item:hover {
+            color: #EE202E;
+        }
+
+        .footer-social {
+            font-size: 40px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            font-weight: 700;
+            color: #7B3500;
+            text-decoration: none;
+        }
+
+        .footer-social svg {
+            width: 40px;
+            height: 40px;
+            fill: #7B3500;
+        }
+
+        .footer-social:hover {
+            transform: scale(1.1);
+        }
+
+        .footer-social:hover svg {
+            fill: #EE202E;
+        }
+
+        .footer-logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-logo-image {
+            width: 72px;
+            height: 72px;
+        }
+
+        @media (max-width: 768px) {
+            .top-navbar {
+                padding: 20px 30px;
+                height: 96px;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+            }
+
+            .logo {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 999;
+            }
+
+            .top-nav-item {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+                position: absolute;
+                right: 30px;
+            }
+
+            .second-navbar {
+                display: none;
+            }
+
+            .menu-header {
+                margin-top: 96px;
+                padding: 40px 20px 30px 20px;
+            }
+
+            .menu-header h1 {
+                font-size: 48px;
+            }
+
+            .menu-header p {
+                font-size: 18px;
+            }
+
+            .menu-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .menu-button {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .categories-wrapper {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .category-column {
+                width: 100%;
+            }
+
+            .menu-categories {
+                padding: 30px 20px 60px 20px;
+            }
+
+            .category-header h2 {
+                font-size: 32px;
+            }
+
+            .menu-item {
+                margin-bottom: 20px;
+            }
+
+            .menu-item-title {
+                font-size: 18px;
+            }
+
+            .menu-item-description {
+                font-size: 14px;
+            }
+
+            .menu-item-price {
+                font-size: 18px;
+            }
+
+            .faq-section {
+                padding: 60px 20px;
+            }
+
+            .faq-header h2 {
+                font-size: 40px;
+            }
+
+            .faq-question-text {
+                font-size: 18px;
+            }
+
+            .faq-answer-text {
+                font-size: 16px;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 40px;
+                padding: 40px 30px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .footer-nav {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navbar -->
+    <nav class="top-navbar">
+        <a href="index.html#about" class="top-nav-item">About Us</a>
+        <a href="index.html"><img src="textlogo.png" alt="BURGS" class="logo"></a>
+        <a href="#order" class="top-nav-item">Order Now</a>
+        <button class="hamburger" id="hamburger">☰</button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html" class="mobile-menu-item">Home</a>
+        <a href="menu.html" class="mobile-menu-item">Menu</a>
+        <a href="#location" class="mobile-menu-item">Location</a>
+        <a href="#contact" class="mobile-menu-item">Contact</a>
+        <a href="index.html#about" class="mobile-menu-item">About</a>
+        <a href="#order" class="mobile-menu-item">Order Now</a>
+    </div>
+
+    <!-- Second Navbar -->
+    <nav class="second-navbar" id="secondNav">
+        <div class="nav-container">
+            <a href="index.html" class="second-nav-item">Home</a>
+            <a href="menu.html" class="second-nav-item">Menu</a>
+            <a href="#location" class="second-nav-item">Location</a>
+            <a href="#contact" class="second-nav-item">Contact</a>
+            <a href="index.html#about" class="second-nav-item">About</a>
+            <a href="#order" class="second-nav-item">Order Now</a>
+        </div>
+    </nav>
+
+    <!-- Menu Header -->
+    <section class="menu-header">
+        <h1>Fuel Your Cravings</h1>
+        <p>Discover our carefully crafted selection of burgers, sides, and drinks made fresh daily with premium ingredients and bold flavors.</p>
+        <div class="menu-buttons">
+            <a href="#burgers" class="menu-button">View Food</a>
+            <a href="#" class="menu-button">Download Menu</a>
+            <a href="#faq" class="menu-button">View FAQ</a>
+        </div>
+    </section>
+
+    <!-- Menu Categories -->
+    <section class="menu-categories">
+        <div class="categories-wrapper">
+            <!-- Left Column -->
+            <div class="category-column">
+                <!-- Burgers -->
+                <div class="category-section" id="burgers">
+                    <div class="category-header">
+                        <h2>Burgers</h2>
+                        <div class="category-divider"></div>
+                    <p class="category-subtext">Fries Included • Double Patty +$2.90 • Add Drink +$1.00 • Blue Lemonade +$1.90</p>
+                    </div>
+                    <div class="menu-list">
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">The Original</div>
+                                    <img src="smalllogo.png" alt="Burgs Special" class="menu-item-logo">
+                                </div>
+                                <div class="menu-item-description">Handcrafted Beef Patty • Signatur Sauce • Crispy Shallots • American Cheese • Sweet Pickled Chillies • Pickled Cucumber • Homemade Bun</div>
+                            </div>
+                            <div class="menu-item-price">$11.90</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">Hot & Spicy</div>
+                                </div>
+                                <div class="menu-item-description">Crispy Fried Chicken • Homemade Slaw • Spicy Glaze • Pickled Cucumber • Mayonnaise • Homemade Bun</div>
+                            </div>
+                            <div class="menu-item-price">$10.90</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">Smokin Burg</div>
+                                    <img src="smalllogo.png" alt="Burgs Special" class="menu-item-logo">
+                                </div>
+                                <div class="menu-item-description">Smoked Beef Brisket • Coleslaw • Honey Mustard Sauce • Homemade Bun</div>
+                            </div>
+                            <div class="menu-item-price">$14.90</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">The Godfather</div>
+                                </div>
+                                <div class="menu-item-description">Crispy Fried Chicken • Marinara Sauce • Beef Pepperoni • Mozzarella Cheese • Homemade Bun</div>
+                            </div>
+                            <div class="menu-item-price">$12.90</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">Bae Con</div>
+                                </div>
+                                <div class="menu-item-description">Handcrafted Beef Patty • Honey Mustard Sauce • Turkey Bacon • American Cheese • Crispy Shallots • Homemade Bun</div>
+                            </div>
+                            <div class="menu-item-price">$13.90</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">Double Trouble</div>
+                                    <img src="smalllogo.png" alt="Burgs Special" class="menu-item-logo">
+                                </div>
+                                <div class="menu-item-description">Handcrafted Beef Patty • Smoked Beef Brisket • American Cheese • Signature Sauce • Homemade Bun</div>
+                            </div>
+                            <div class="menu-item-price">$15.90</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fries -->
+                <div class="category-section" id="fries">
+                    <div class="category-header">
+                        <h2>Fries</h2>
+                        <div class="category-divider"></div>
+                    </div>
+                    <div class="menu-list">
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">Fries</div>
+                                </div>
+                                <div class="menu-item-description">Crispy golden fries seasoned with sea salt.</div>
+                            </div>
+                            <div class="menu-item-price">$4.90</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">Loaded Smoked Beef Brisket Fries</div>
+                                </div>
+                                <div class="menu-item-description">Fries topped with cheese sauce and smoked beef brisket.</div>
+                            </div>
+                            <div class="menu-item-price">$6.90</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">Okonomi Fries</div>
+                                </div>
+                                <div class="menu-item-description">Fries drizzled with truffle oil and parmesan cheese.</div>
+                            </div>
+                            <div class="menu-item-price">$5.90</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">Cheese Fries with Pickled Chilies</div>
+                                </div>
+                                <div class="menu-item-description">Fries topped with cheese sauce and smoked beef brisket.</div>
+                            </div>
+                            <div class="menu-item-price">$5.90</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">Burgs Sig Fries</div>
+                                </div>
+                                <div class="menu-item-description">Fries topped with cheese sauce, caramelised onions, chicken skin, and chives.</div>
+                            </div>
+                            <div class="menu-item-price">$5.90</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">Spaghetti Bites (3 pcs)</div>
+                                </div>
+                                <div class="menu-item-description">Fries topped with cheese sauce and smoked beef brisket.</div>
+                            </div>
+                            <div class="menu-item-price">$4.90</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nuggies/Wings -->
+                <div class="category-section" id="nuggies">
+                    <div class="category-header">
+                        <h2>Nuggies & Wings</h2>
+                        <div class="category-divider"></div>
+                    </div>
+                    <div class="menu-list">
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">Nuggies Original (6pc)</div>
+                                </div>
+                                <div class="menu-item-description">Crispy golden chicken nuggets served with your choice of dipping sauce.</div>
+                            </div>
+                            <div class="menu-item-price">$4.90</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">Nuggies Kicap Manis (6pcs)</div>
+                                </div>
+                                <div class="menu-item-description">Spicy buffalo wings tossed in hot sauce, served with ranch dressing.</div>
+                            </div>
+                            <div class="menu-item-price">$4.90</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">Wings Honey Butter (6pcs)</div>
+                                </div>
+                                <div class="menu-item-description">Smoky BBQ glazed chicken wings with a sweet and tangy finish.</div>
+                            </div>
+                            <div class="menu-item-price">$5.90</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">Wings Hot & Spicy (6pcs)</div>
+                                </div>
+                                <div class="menu-item-description">Spicy buffalo wings tossed in hot sauce, served with ranch dressing.</div>
+                            </div>
+                            <div class="menu-item-price">$5.90</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="category-column">
+                <!-- Sliders -->
+                <div class="category-section" id="sliders">
+                    <div class="category-header">
+                        <h2>Sliders</h2>
+                        <div class="category-divider"></div>
+                        <p class="category-subtext">Every Order Comes With Two Sliders</p>
+                    </div>
+                    <div class="menu-list">
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">Junior</div>
+                                    <img src="smalllogo.png" alt="Burgs Special" class="menu-item-logo">
+                                </div>
+                                <div class="menu-item-description">Handcrafted Beef Patty • American Cheese • Signature Sauce • Homemade Bun</div>
+                            </div>
+                            <div class="menu-item-price">$8.90</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">Chicken Little</div>
+                                </div>
+                                <div class="menu-item-description">Fried Chicken Thigh • Cheese Sauce • Twisties • Homemade Bun</div>
+                            </div>
+                            <div class="menu-item-price">$8.90</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">Smokin JR</div>
+                                </div>
+                                <div class="menu-item-description">Smoked Beef Brisket • American Cheese • Homemade BBQ Sauce • Homemade Bun</div>
+                            </div>
+                            <div class="menu-item-price">$10.90</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">Party Box (15 Sliders)</div>
+                                </div>
+                                <div class="menu-item-description">Perfect for parties and gatherings - assorted mini sliders.
+                                    <div class="party-box-note">Boxes sold only in multiples of 5</div>
+                                </div>
+                            </div>
+                            <div class="menu-item-price">$60.00</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dips -->
+                <div class="category-section" id="dips">
+                    <div class="category-header">
+                        <h2>Dips</h2>
+                        <div class="category-divider"></div>
+                    </div>
+                    <div class="menu-list">
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">Marinara</div>
+                                </div>
+                                <div class="menu-item-description">Our secret blend of mayo, ketchup, and special spices.</div>
+                            </div>
+                            <div class="menu-item-price">$3.00</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">Cheese</div>
+                                </div>
+                                <div class="menu-item-description">Creamy mayo infused with smoky chipotle peppers.</div>
+                            </div>
+                            <div class="menu-item-price">$3.00</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thirst Quenchers -->
+                <div class="category-section" id="drinks">
+                    <div class="category-header">
+                        <h2>Thirst Quenchers</h2>
+                        <div class="category-divider"></div>
+                    </div>
+                    <div class="menu-list">
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">Mineral Water</div>
+                                </div>
+                                <div class="menu-item-description">Classic Coca-Cola served ice cold.</div>
+                            </div>
+                            <div class="menu-item-price">$1.90</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">Coke Zero/Original/Grape/Green Tea</div>
+                                </div>
+                                <div class="menu-item-description">Refreshing lemon-lime soda.</div>
+                            </div>
+                            <div class="menu-item-price">$2.90</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">Homemade Black Lemonade</div>
+                                    <img src="smalllogo.png" alt="Burgs Special" class="menu-item-logo">
+                                </div>
+                                <div class="menu-item-description">Freshly brewed iced tea with lemon.</div>
+                            </div>
+                            <div class="menu-item-price">$4.90</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-content">
+                                <div class="menu-item-header">
+                                    <div class="menu-item-title">Homemade Blue Lemonade</div>
+                                    <img src="smalllogo.png" alt="Burgs Special" class="menu-item-logo">
+                                </div>
+                                <div class="menu-item-description">Thick and creamy milkshake - vanilla, chocolate, or strawberry.</div>
+                            </div>
+                            <div class="menu-item-price">$4.90</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <div class="faq-header">
+            <h2>Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-question-text">What are your opening hours?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p class="faq-answer-text">We're open Monday to Thursday from 11am to 10pm, Friday and Saturday from 11am to 11pm, and Sunday from 12pm to 9pm. We're here to serve you delicious burgers throughout the week!</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-question-text">Do you offer vegetarian or vegan options?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p class="faq-answer-text">Yes! We offer a delicious Veggie Supreme burger made with a house-made plant-based patty. We can also customize most burgers to be vegetarian-friendly. Please let our staff know about any dietary requirements.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-question-text">Can I customize my burger?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p class="faq-answer-text">Absolutely! We encourage you to customize your burger to your liking. Add extra toppings, swap sauces, or remove ingredients - just let us know your preferences when ordering.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-question-text">Do you offer delivery?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p class="faq-answer-text">Yes! We partner with major delivery platforms including GrabFood, Deliveroo, and Foodpanda. You can also order directly through our website for pickup or delivery within a 5km radius.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-question-text">Are your burgers halal-certified?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p class="faq-answer-text">We are currently working towards halal certification. All our beef and chicken are sourced from halal-certified suppliers, but we have not yet received our official certification. Please check with us for the latest updates.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span class="faq-question-text">Do you cater for events and parties?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p class="faq-answer-text">Yes! We offer catering services for events, parties, and corporate functions. Contact us at catering@burgs.sg or call us to discuss your catering needs and we'll create a custom menu for your event.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo-container">
+                <img src="smalllogo.png" alt="Burgs Logo" class="footer-logo-image">
+                <div class="footer-subtext">Go Burgs<br>or Go Home.</div>
+            </div>
+            <nav class="footer-nav">
+                <a href="index.html" class="footer-nav-item">Home</a>
+                <a href="menu.html" class="footer-nav-item">Menu</a>
+                <a href="index.html#about" class="footer-nav-item">About Us</a>
+                <a href="#location" class="footer-nav-item">Location</a>
+                <a href="#order" class="footer-nav-item">Order Now</a>
+                <a href="#contact" class="footer-nav-item">Contact</a>
+                <a href="#" class="footer-nav-item">Privacy</a>
+                <a href="#" class="footer-nav-item">Terms</a>
+            </nav>
+            <div class="footer-socials" style="justify-content:center;">
+                <a href="https://www.instagram.com/burgs.sg" class="footer-social">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/>
+                    </svg>
+                </a>
+                <a href="https://www.tiktok.com/@burgssingapore?_r=1&_t=ZS-930BZk8gdNg" class="footer-social">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 Burgs · Made humbly by Harshith Chinni
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuItems = document.querySelectorAll('.mobile-menu-item');
+
+        hamburger.addEventListener('click', () => {
+            const isActive = mobileMenu.classList.contains('active');
+            const topNav = document.querySelector('.top-navbar');
+            
+            if (!isActive) {
+                mobileMenu.classList.add('active');
+                topNav.classList.add('menu-open');
+                document.body.style.overflow = 'hidden';
+                mobileMenuItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('show');
+                    }, index * 80);
+                });
+            } else {
+                mobileMenuItems.forEach(item => {
+                    item.classList.remove('show');
+                });
+                topNav.classList.remove('menu-open');
+                document.body.style.overflow = '';
+                setTimeout(() => {
+                    mobileMenu.classList.remove('active');
+                }, 250);
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        mobileMenuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                mobileMenuItems.forEach(menuItem => {
+                    menuItem.classList.remove('show');
+                });
+                setTimeout(() => {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                }, 300);
+            });
+        });
+
+        // FAQ accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all other FAQ items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current item
+                if (isActive) {
+                    item.classList.remove('active');
+                } else {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar hide on scroll
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.scrollY;
+            const topNav = document.querySelector('.top-navbar');
+            const secondNav = document.querySelector('.second-navbar');
+
+            if (currentScroll > lastScrollY && currentScroll > 150) {
+                topNav.classList.add('hidden');
+                secondNav.classList.add('hidden');
+            } else if (currentScroll < lastScrollY) {
+                topNav.classList.remove('hidden');
+                secondNav.classList.remove('hidden');
+            }
+
+            lastScrollY = currentScroll;
+        });
+    </script>
+</body>
+</html>
