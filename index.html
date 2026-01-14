@@ -109,31 +109,6 @@
             color: #ff4757;
         }
 
-        /* Hero Section */
-        .hero-section {
-    margin-top: 156px;
-    height: 90vh;
-    background: url('herosectioncollage.png') center/cover;
-filter: contrast(1.1) saturate(1.15);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-        .hero-text {
-    font-family: 'Unbounded', sans-serif;
-    font-weight: 800;
-    font-size: 100px;
-    color: #7B3500;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 1s ease;
-    text-align: center;
-    line-height: 1.2;
-}
-
         .hero-text.visible {
             opacity: 1;
             transform: translateY(0);
@@ -229,13 +204,6 @@ filter: contrast(1.1) saturate(1.15);
     margin-right: 30px;
 }
 
-/*
-.content-section:nth-of-type(2) .content-image {
-    position: relative;
-    z-index: 100;
-    margin-top: -60px;
-}
-*/
 .content-section:nth-child(4) .content-image {
     position: relative;
     z-index: 100;
@@ -243,7 +211,7 @@ filter: contrast(1.1) saturate(1.15);
 }
 /* Fade in animation */
 .fade-in {
-    opacity: 0;
+    opacity: 0; 
     transform: translateY(30px);
     transition: opacity 0.8s ease, transform 0.8s ease;
 }
@@ -513,6 +481,74 @@ filter: contrast(1.1) saturate(1.15);
     background: #FFD549;
 }
 
+/* Hero Section */
+.hero-section {
+    margin-top: 156px;
+    min-height: calc(100vh - 156px);
+    background: #FCFAED;
+    position: relative;
+    overflow: visible;
+}
+
+
+
+.hero-content {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-top: 80px;
+    text-align: center;
+}
+
+.hero-text {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 800;
+    font-size: clamp(70px, 8.5vw, 130px);
+    line-height: 1.05;
+    color: #7B3500;
+    max-width: 1350px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-highlight {
+    color: #7B3500;
+    position: relative;
+    display: inline-block;
+}
+
+.hero-burger {
+    display: block;
+    width: min(900px, 90vw);
+    margin: -220px auto 0;
+    position: relative;
+    z-index: 3;
+    pointer-events: none;
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.2));
+}
+
+.mobile {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .desktop {
+        display: none;
+    }
+
+    .mobile {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-burger {
+        bottom: -18%;
+        width: 130vw;
+    }
+}
+
     @media (max-width: 768px) {
 
             body {
@@ -521,12 +557,6 @@ filter: contrast(1.1) saturate(1.15);
     
     .hero-section {
         margin-top: 96px !important;
-    }
-
-    .hero-text {
-        font-size: 60px;
-        text-align: center;
-        padding: 0 20px;
     }
 
     .top-navbar {
@@ -639,10 +669,20 @@ filter: contrast(1.1) saturate(1.15);
     </div>
 </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-    </section>
-
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-content">
+       <h1 class="hero-text">
+    <span class="desktop">SINGAPORE'S<br>FAVOURITE<br>BURGER JOINT</span>
+    <span class="mobile">
+        SINGAPORE'S<br>
+        FAVOURITE<br>
+        BURGER JOINT
+    </span>
+</h1>
+        <img src="burgerhero.png" alt="Burger" class="hero-burger">
+    </div>
+</section>
 <!-- Content Section 1 -->
 <section class="content-section yellow-section" id="about" style="padding-bottom: 0; margin-bottom: 0;">
 <div class="content-text fade-in" style="color: #7B3500;">       
