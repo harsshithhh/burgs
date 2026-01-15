@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burgs - About Us</title>
+    <link rel="icon" type="image/png" href="smalllogo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;800&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'GeneralSans';
+            src: url('generalsans.otf') format('opentype');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'GeneralSans', sans-serif;
+            overflow-x: hidden;
+            background: #FCFAED;
+        }
+
+        /* Top Navbar */
+        .top-navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: #FCFAED;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .logo {
+            height: 56px;
+            cursor: pointer;
+        }
+
+        .top-nav-item {
+            font-size: 22px;
+            font-weight: 800;
+            color: #7B3500;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-family: 'Unbounded', sans-serif;
+            text-transform: uppercase;
+            padding: 8px 18px;
+            border: 2px solid #FFD549;
+            background: transparent;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .top-nav-item:hover {
+            background: #FFD549;
+            transform: translateY(-2px);
+            color: #EE202E;
+        }
+
+        /* Second Navbar */
+        .second-navbar {
+            position: fixed;
+            top: 96px;
+            width: 100%;
+            background: #FFD549;
+            padding: 20px 0;
+            z-index: 999;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            max-width: 100%;
+        }
+
+        .second-nav-item {
+            color: #7B3500;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 16px;
+            transition: color 0.3s ease;
+            position: relative;
+            font-family: 'Unbounded', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .second-nav-item:hover {
+            color: #EE202E;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 28px;
+            color: #7B3500;
+            cursor: pointer;
+            background: none;
+            border: none;
+            z-index: 999;
+            position: relative;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #FFD549;
+            padding: 120px 20px 20px 20px;
+            z-index: 998;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .mobile-menu-item {
+            color: #7B3500;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 32px;
+            font-family: 'Unbounded', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 15px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-menu-item:hover {
+            color: #EE202E;
+        }
+
+        .top-navbar.hidden,
+        .second-navbar.hidden {
+            transform: translateY(-200px);
+        }
+
+        .top-navbar.menu-open .logo {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .top-navbar.menu-open {
+            background: #FFD549;
+        }
+
+        /* About Section */
+        .about-section {
+            margin-top: 176px;
+            padding: 80px 60px;
+            text-align: center;
+            background: #FCFAED;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .about-section h1 {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 800;
+            font-size: 72px;
+            color: #7B3500;
+            margin-bottom: 40px;
+        }
+
+        .about-section p {
+            font-family: 'GeneralSans', sans-serif;
+            font-size: 20px;
+            color: #7B3500;
+            line-height: 1.8;
+            opacity: 0.9;
+            text-align: left;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            padding: 80px 60px;
+            background: #FFD549;
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .timeline-header h2 {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 800;
+            font-size: 56px;
+            color: #7B3500;
+        }
+
+        .timeline {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: #7B3500;
+            opacity: 0.2;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-box {
+            padding: 30px;
+            background: #FCFAED;
+            border: 3px solid #7B3500;
+        }
+
+        .timeline-image-box {
+            background: #FCFAED;
+            border: 3px solid #7B3500;
+            overflow: hidden;
+        }
+
+        .timeline-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .timeline-year {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 800;
+            font-size: 32px;
+            color: #EE202E;
+            margin-bottom: 15px;
+        }
+
+        .timeline-title {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 800;
+            font-size: 24px;
+            color: #7B3500;
+            margin-bottom: 10px;
+        }
+
+        .timeline-description {
+            font-family: 'GeneralSans', sans-serif;
+            font-size: 17px;
+            color: #7B3500;
+            line-height: 1.6;
+            opacity: 0.85;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: #EE202E;
+            border: 4px solid #FFD549;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        /* Footer */
+        .footer {
+            background: #FCFAED;
+            padding: 40px 40px 20px 40px;
+            display: flex;
+            flex-direction: column;
+            color: #7B3500;
+            gap: 20px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .footer-subtext {
+            font-size: 16px;
+            font-weight: 800;
+            font-family: 'Unbounded', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 1;
+            text-align: center;
+            color: #7B3500;
+            line-height: 1.4;
+        }
+
+        .footer-nav {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 20px 30px;
+            align-self: center;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 14px;
+            color: #7B3500;
+            font-family: 'Unbounded', sans-serif;
+            opacity: 0.7;
+            margin-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .footer-nav-item {
+            color: #7B3500;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+            font-family: 'Unbounded', sans-serif;
+            text-transform: uppercase;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .footer-nav-item:hover {
+            color: #EE202E;
+        }
+
+        .footer-social {
+            font-size: 40px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            font-weight: 700;
+            color: #7B3500;
+            text-decoration: none;
+        }
+
+        .footer-social svg {
+            width: 40px;
+            height: 40px;
+            fill: #7B3500;
+        }
+
+        .footer-social:hover {
+            transform: scale(1.1);
+        }
+
+        .footer-social:hover svg {
+            fill: #EE202E;
+        }
+
+        .footer-logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-logo-image {
+            width: 72px;
+            height: 72px;
+        }
+
+        @media (max-width: 768px) {
+            .top-navbar {
+                padding: 20px 30px;
+                height: 96px;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+            }
+
+            .logo {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 999;
+            }
+
+            .top-nav-item {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+                position: absolute;
+                right: 30px;
+            }
+
+            .second-navbar {
+                display: none;
+            }
+
+            .about-section {
+                margin-top: 96px;
+                padding: 40px 20px;
+            }
+
+            .about-section h1 {
+                font-size: 48px;
+            }
+
+            .about-section p {
+                font-size: 17px;
+            }
+
+            .timeline-section {
+                padding: 60px 20px;
+            }
+
+            .timeline-header h2 {
+                font-size: 40px;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                padding-left: 60px;
+                gap: 15px;
+            }
+
+            .timeline-dot {
+                left: 30px;
+                top: 30px;
+            }
+
+            .timeline-year {
+                font-size: 24px;
+            }
+
+            .timeline-title {
+                font-size: 20px;
+            }
+
+            .timeline-description {
+                font-size: 15px;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 40px;
+                padding: 40px 30px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .footer-nav {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navbar -->
+    <nav class="top-navbar">
+        <a href="index.html#about" class="top-nav-item">About Us</a>
+        <a href="index.html"><img src="textlogo.png" alt="BURGS" class="logo"></a>
+        <a href="#order" class="top-nav-item">Order Now</a>
+        <button class="hamburger" id="hamburger">☰</button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html" class="mobile-menu-item">Home</a>
+        <a href="menu.html" class="mobile-menu-item">Menu</a>
+        <a href="#location" class="mobile-menu-item">Location</a>
+        <a href="#contact" class="mobile-menu-item">Contact</a>
+        <a href="about.html" class="mobile-menu-item">About</a>
+        <a href="#order" class="mobile-menu-item">Order Now</a>
+    </div>
+
+    <!-- Second Navbar -->
+    <nav class="second-navbar" id="secondNav">
+        <div class="nav-container">
+            <a href="index.html" class="second-nav-item">Home</a>
+            <a href="menu.html" class="second-nav-item">Menu</a>
+            <a href="#location" class="second-nav-item">Location</a>
+            <a href="#contact" class="second-nav-item">Contact</a>
+            <a href="about.html" class="second-nav-item">About</a>
+            <a href="#order" class="second-nav-item">Order Now</a>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <h1>Our Story</h1>
+        <p>
+            Born from a passion for perfecting the craft of burger-making, Burgs started as a dream in a small kitchen and has grown into Singapore's most beloved burger destination. We believe that a great burger is more than just food—it's an experience that brings people together, creates memories, and satisfies cravings like nothing else can.
+            <br><br>
+            Every burger we create is a testament to our commitment to quality, flavor, and innovation. From our handcrafted beef patties to our homemade buns, signature sauces, and carefully selected toppings, we pour our heart into every single element. We source only the finest ingredients, work with trusted suppliers, and never compromise on taste or freshness.
+            <br><br>
+            Our journey has been fueled by the incredible support of our community—the burger lovers who line up at our door, share their experiences, and keep coming back for more. We're not just serving burgers; we're building a movement of flavor enthusiasts who believe that food should be bold, exciting, and unforgettable. Welcome to the Burgs family.
+        </p>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <div class="timeline-header">
+            <h2>Our Journey</h2>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-box">
+                    <div class="timeline-year">2019</div>
+                    <div class="timeline-title">The Beginning</div>
+                    <div class="timeline-description">Burgs was founded with a simple mission: to create the perfect burger. Starting from a humble home kitchen, we experimented with recipes, perfected our techniques, and dreamed big.</div>
+                </div>
+                <div class="timeline-image-box">
+                    <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop" alt="Kitchen">
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-image-box">
+                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&h=400&fit=crop" alt="Pop-up stall">
+                </div>
+                <div class="timeline-box">
+                    <div class="timeline-year">2020</div>
+                    <div class="timeline-title">First Pop-Up</div>
+                    <div class="timeline-description">We launched our first pop-up stall, serving burgers at local markets and events. The response was overwhelming—people loved our bold flavors and quality ingredients.</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-box">
+                    <div class="timeline-year">2021</div>
+                    <div class="timeline-title">Permanent Location</div>
+                    <div class="timeline-description">We opened our first brick-and-mortar restaurant, bringing our signature burgers to hungry fans every single day. Lines formed, reviews poured in, and we knew we were onto something special.</div>
+                </div>
+                <div class="timeline-image-box">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop" alt="Restaurant">
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-image-box">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&h=400&fit=crop" alt="Award">
+                </div>
+                <div class="timeline-box">
+                    <div class="timeline-year">2023</div>
+                    <div class="timeline-title">Award Recognition</div>
+                    <div class="timeline-description">Burgs was recognized as one of Singapore's top burger joints, winning multiple awards for our innovative menu and exceptional quality. Our community grew stronger than ever.</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-box">
+                    <div class="timeline-year">2024</div>
+                    <div class="timeline-title">Expansion & Innovation</div>
+                    <div class="timeline-description">We expanded our menu with new creations like the Smokin Burg and Double Trouble, introduced catering services, and continued pushing the boundaries of what a burger can be.</div>
+                </div>
+                <div class="timeline-image-box">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&h=400&fit=crop" alt="Burger">
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-image-box">
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=400&fit=crop" alt="Future">
+                </div>
+                <div class="timeline-box">
+                    <div class="timeline-year">2025</div>
+                    <div class="timeline-title">The Future</div>
+                    <div class="timeline-description">With new locations in the works and exciting menu innovations on the horizon, we're just getting started. The best burgers are yet to come.</div>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo-container">
+                <img src="smalllogo.png" alt="Burgs Logo" class="footer-logo-image">
+                <div class="footer-subtext">Go Burgs<br>or Go Home.</div>
+            </div>
+            <nav class="footer-nav">
+                <a href="index.html" class="footer-nav-item">Home</a>
+                <a href="menu.html" class="footer-nav-item">Menu</a>
+                <a href="about.html" class="footer-nav-item">About Us</a>
+                <a href="#location" class="footer-nav-item">Location</a>
+                <a href="#order" class="footer-nav-item">Order Now</a>
+                <a href="#contact" class="footer-nav-item">Contact</a>
+                <a href="#" class="footer-nav-item">Privacy</a>
+                <a href="#" class="footer-nav-item">Terms</a>
+            </nav>
+            <div class="footer-socials" style="justify-content:center;">
+                <a href="https://www.instagram.com/burgs.sg" class="footer-social">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/>
+                    </svg>
+                </a>
+                <a href="https://www.tiktok.com/@burgssingapore?_r=1&_t=ZS-930BZk8gdNg" class="footer-social">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 Burgs · Made humbly by Harshith Chinni
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuItems = document.querySelectorAll('.mobile-menu-item');
+
+        hamburger.addEventListener('click', () => {
+            const isActive = mobileMenu.classList.contains('active');
+            const topNav = document.querySelector('.top-navbar');
+            
+            if (!isActive) {
+                mobileMenu.classList.add('active');
+                topNav.classList.add('menu-open');
+                document.body.style.overflow = 'hidden';
+                mobileMenuItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('show');
+                    }, index * 80);
+                });
+            } else {
+                mobileMenuItems.forEach(item => {
+                    item.classList.remove('show');
+                });
+                topNav.classList.remove('menu-open');
+                document.body.style.overflow = '';
+                setTimeout(() => {
+                    mobileMenu.classList.remove('active');
+                }, 250);
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        mobileMenuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                mobileMenuItems.forEach(menuItem => {
+                    menuItem.classList.remove('show');
+                });
+                setTimeout(() => {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                }, 300);
+            });
+        });
+
+        // Navbar hide on scroll
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.scrollY;
+            const topNav = document.querySelector('.top-navbar');
+            const secondNav = document.querySelector('.second-navbar');
+
+            if (currentScroll > lastScrollY && currentScroll > 150) {
+                topNav.classList.add('hidden');
+                secondNav.classList.add('hidden');
+            } else if (currentScroll < lastScrollY) {
+                topNav.classList.remove('hidden');
+                secondNav.classList.remove('hidden');
+            }
+
+            lastScrollY = currentScroll;
+        });
+
+        // Timeline scroll animation
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        timelineItems.forEach(item => {
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>
