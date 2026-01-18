@@ -26,9 +26,9 @@
 }
 
         /* Top Navbar */
-        .top-navbar {
+.top-navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;  /* CHANGE FROM space-between */
     align-items: center;
     padding: 20px 60px;
     background: #FCFAED;
@@ -235,17 +235,11 @@
 }
 
 .scrolling-banner-inner {
-    background: #FFD549;
+    background: #71c7ad; 
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     padding: 8px 0;
     position: relative;
     z-index: 1;
-}
-
-.banner-content {
-    display: flex;
-    animation: scroll 4.28s linear infinite;
-    white-space: nowrap;
 }
 
 .banner-item {
@@ -266,11 +260,22 @@
     margin: 0 20px;
 }
 
+.banner-content {
+    display: flex;
+    width: max-content;
+    animation: scroll 20s linear infinite;
+}
+
+.banner-track {
+    display: flex;
+    white-space: nowrap;
+}
+
 @keyframes scroll {
-    0% {
+    from {
         transform: translateX(0);
     }
-    100% {
+    to {
         transform: translateX(-50%);
     }
 }
@@ -464,8 +469,11 @@
 }
 
 .content-section.yellow-section {
-    padding-bottom: 0;
+    padding-bottom: 100px;
+    position: relative;
+    z-index: 1;
 }
+
 
 .top-navbar.hidden,
 .second-navbar.hidden {
@@ -490,13 +498,11 @@
     overflow: visible;
 }
 
-
-
 .hero-content {
     position: relative;
     max-width: 1400px;
     margin: 0 auto;
-    padding-top: 80px;
+    padding-top: 40px;  /* CHANGE FROM 60px to push up more */
     text-align: center;
 }
 
@@ -510,6 +516,7 @@
     margin: 0 auto;
     position: relative;
     z-index: 2;
+    top: -44px;
 }
 
 .hero-highlight {
@@ -520,8 +527,8 @@
 
 .hero-burger {
     display: block;
-    width: min(900px, 90vw);
-    margin: -220px auto 0;
+    width: min(1125px, 112.5vw);
+    margin: -325px auto 0;  /* CHANGE FROM -325px to push up more and overlap text slightly */
     position: relative;
     z-index: 3;
     pointer-events: none;
@@ -530,6 +537,109 @@
 
 .mobile {
     display: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #FCFAED;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border: 2px solid #FFD549;
+    margin-top: 8px;
+}
+
+.dropdown-content a {
+    color: #7B3500;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s;
+}
+
+.dropdown-content a:hover {
+    background-color: #FFD549;
+    color: #EE202E;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .second-nav-item {
+    color: #EE202E;
+}
+
+.mobile-dropdown {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+}
+
+.mobile-dropdown-header {
+    color: #7B3500;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 32px;
+    font-family: 'Unbounded', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+}
+
+.mobile-dropdown-header.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mobile-dropdown-items {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+}
+
+.mobile-dropdown-items.open {
+    display: flex;
+}
+
+.mobile-dropdown-item {
+    color: #7B3500;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 24px;
+    font-family: 'Unbounded', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+}
+
+.mobile-dropdown-item.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 @media (max-width: 768px) {
@@ -550,19 +660,51 @@
 }
 
     @media (max-width: 768px) {
-
-            body {
+    body {
         background: #FCFAED;
     }
     
     .hero-section {
-        margin-top: 96px !important;
+        margin-top: 25px !important;
+        overflow-x: hidden;
+        width: 100%;
+        min-height: auto;
+        padding-bottom: 0;
+    }
+
+    .hero-content {
+        width: 100%;
+        overflow-x: hidden;
+        padding: 10px 10px;
+        position: relative;
+    }
+
+    .hero-text {
+        width: 100%;
+        padding: 0 10px;
+        font-size: clamp(48px, 12vw, 70px);
+        line-height: 1.1;
+        margin-bottom: 0;
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero-burger {
+        position: relative;
+        width: 90vw;
+        max-width: 450px;
+        margin: -100px auto 0;
+        display: block;
+        z-index: 2;
     }
 
     .top-navbar {
         padding: 20px 30px;
         height: 96px;
         align-items: center;
+        width: 100%;
+        left: 0;
+        right: 0;
     }
 
     .top-navbar .logo {
@@ -641,9 +783,7 @@
 <body>
 <!-- Top Navbar -->
 <nav class="top-navbar">
-    <a href="about.html" class="top-nav-item">About Us</a>
     <a href="#" onclick="window.scrollTo(0,0)"><img src="textlogo.png" alt="BURGS" class="logo"></a>
-    <a href="#order" class="top-nav-item">Order Now</a>
     <button class="hamburger" id="hamburger">☰</button>
 </nav>
 
@@ -654,18 +794,29 @@
     <a href="#location" class="mobile-menu-item">Location</a>
     <a href="#contact" class="mobile-menu-item">Contact</a>
     <a href="#about" class="mobile-menu-item">About</a>
-    <a href="#order" class="mobile-menu-item">Order Now</a>
+    <div class="mobile-dropdown">
+        <div class="mobile-dropdown-header" id="mobileDeliveryHeader">Delivery</div>
+        <div class="mobile-dropdown-items" id="mobileDeliveryItems">
+            <a href="https://www.foodpanda.sg" target="_blank" class="mobile-dropdown-item">FoodPanda</a>
+            <a href="https://www.grab.com/sg/food/" target="_blank" class="mobile-dropdown-item">GrabFood</a>
+        </div>
+    </div>
 </div>
-
 <!-- Second Navbar -->
 <nav class="second-navbar" id="secondNav">
     <div class="nav-container">
-        <a href="#" class="second-nav-item">Home</a>
+        <a href="index.html" class="second-nav-item">Home</a>
         <a href="menu.html" class="second-nav-item">Menu</a>
         <a href="#location" class="second-nav-item">Location</a>
         <a href="#contact" class="second-nav-item">Contact</a>
-        <a href="#about" class="second-nav-item">About</a>
-        <a href="#order" class="second-nav-item">Order Now</a>
+        <a href="about.html"" class="second-nav-item">About</a>
+        <div class="dropdown">
+            <a href="#delivery" class="second-nav-item">Delivery</a>
+            <div class="dropdown-content">
+                <a href="https://www.foodpanda.sg" target="_blank">FoodPanda</a>
+                <a href="https://www.grab.com/sg/food/" target="_blank">GrabFood</a>
+            </div>
+        </div>
     </div>
 </nav>
 
@@ -673,62 +824,67 @@
 <section class="hero-section">
     <div class="hero-content">
        <h1 class="hero-text">
-    <span class="desktop">SINGAPORE'S<br>FAVOURITE<br>BURGER JOINT</span>
+    <span class="desktop">100% HANDMADE<br>BUNS</span>
     <span class="mobile">
-        SINGAPORE'S<br>
-        FAVOURITE<br>
-        BURGER JOINT
+        100% HAND-<br>
+        MADE<br>
+        BUNS
     </span>
 </h1>
         <img src="burgerhero.png" alt="Burger" class="hero-burger">
     </div>
 </section>
-<!-- Content Section 1 -->
-<section class="content-section yellow-section" id="about" style="padding-bottom: 0; margin-bottom: 0;">
-<div class="content-text fade-in" style="color: #7B3500;">       
-     <h3>Crafted With <span style="color:#EE202E;">Passion</span></h3>
-        <p>At Burgs, we believe in creating the perfect burger experience. Every patty is made from premium, locally-sourced beef, grilled to perfection, and served on our signature brioche buns. Our commitment to quality ingredients and bold flavors sets us apart. We take pride in every burger that leaves our kitchen, ensuring that each bite is a memorable experience.</p>
+<!-- Content Section 3 -->
+<section class="content-section yellow-section" id="about" style="padding-bottom: 40px;">
+<div class="content-text fade-in" style="color: #7B3500;">
+        <h3>Meet The <span style="color:#EE202E;">Founders</span></h3>       
+        <p>Founded by two passionate food enthusiasts, Burgs was born from a simple dream: to create the best burger in town. With years of culinary experience and a love for quality ingredients, our founders have built a brand that stands for excellence, flavor, and community. Their vision was to create a place where people could enjoy authentic, delicious burgers in a welcoming atmosphere.</p>
     </div>
-    <div class="content-image fade-in" style="background-image: url('picture3.jpg');"></div>
+    <div class="content-image fade-in" style="background-image: url('https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&h=600&fit=crop');"></div>
 </section>
 
 <!-- Scrolling Banner -->
 <div class="scrolling-banner" style="margin-top: 0;">
     <div class="scrolling-banner-inner">
         <div class="banner-content">
-            <span class="banner-item">CLASSIC CHEESE</span>
-            <img src="smalllogo.png" alt="Burgs" class="banner-logo">
-            <span class="banner-item">BBQ BACON</span>
-            <img src="smalllogo.png" alt="Burgs" class="banner-logo">
-            <span class="banner-item">MUSHROOM SWISS</span>
-            <img src="smalllogo.png" alt="Burgs" class="banner-logo">
-            <span class="banner-item">SPICY JALAPEÑO</span>
-            <img src="smalllogo.png" alt="Burgs" class="banner-logo">
-            <span class="banner-item">DOUBLE STACK</span>
-            <img src="smalllogo.png" alt="Burgs" class="banner-logo">
-            <span class="banner-item">TRUFFLE BURGER</span>
-            <img src="smalllogo.png" alt="Burgs" class="banner-logo">
-            <span class="banner-item">CHICKEN DELUXE</span>
-            <img src="smalllogo.png" alt="Burgs" class="banner-logo">
-            <span class="banner-item">VEGGIE SUPREME</span>
-            <img src="smalllogo.png" alt="Burgs" class="banner-logo">
-            <span class="banner-item">CLASSIC CHEESE</span>
-            <img src="smalllogo.png" alt="Burgs" class="banner-logo">
-            <span class="banner-item">BBQ BACON</span>
-            <img src="smalllogo.png" alt="Burgs" class="banner-logo">
-            <span class="banner-item">MUSHROOM SWISS</span>
-            <img src="smalllogo.png" alt="Burgs" class="banner-logo">
-            <span class="banner-item">SPICY JALAPEÑO</span>
-            <img src="smalllogo.png" alt="Burgs" class="banner-logo">
-            <span class="banner-item">DOUBLE STACK</span>
-            <img src="smalllogo.png" alt="Burgs" class="banner-logo">
-            <span class="banner-item">TRUFFLE BURGER</span>
-            <img src="smalllogo.png" alt="Burgs" class="banner-logo">
-            <span class="banner-item">CHICKEN DELUXE</span>
-            <img src="smalllogo.png" alt="Burgs" class="banner-logo">
-            <span class="banner-item">VEGGIE SUPREME</span>
-            <img src="smalllogo.png" alt="Burgs" class="banner-logo">
-        </div>
+    <div class="banner-track">
+        <span class="banner-item">THE ORIGINAL</span>
+        <img src="smalllogo.png" class="banner-logo">
+        <span class="banner-item">HOT & SPICY</span>
+        <img src="smalllogo.png" class="banner-logo">
+        <span class="banner-item">SMOKIN BURG</span>
+        <img src="smalllogo.png" class="banner-logo">
+        <span class="banner-item">THE GODFATHER</span>
+        <img src="smalllogo.png" class="banner-logo">
+        <span class="banner-item">CINNABURG</span>
+        <img src="smalllogo.png" class="banner-logo">
+        <span class="banner-item">BAE CON</span>
+        <img src="smalllogo.png" class="banner-logo">
+        <span class="banner-item">BLUE LEMONADE</span>
+        <img src="smalllogo.png" class="banner-logo">
+        <span class="banner-item">DOUBLE TROUBLE</span>
+        <img src="smalllogo.png" class="banner-logo">
+    </div>
+
+    <div class="banner-track">
+        <span class="banner-item">THE ORIGINAL</span>
+        <img src="smalllogo.png" class="banner-logo">
+        <span class="banner-item">HOT & SPICY</span>
+        <img src="smalllogo.png" class="banner-logo">
+        <span class="banner-item">SMOKIN BURG</span>
+        <img src="smalllogo.png" class="banner-logo">
+        <span class="banner-item">THE GODFATHER</span>
+        <img src="smalllogo.png" class="banner-logo">
+        <span class="banner-item">CINNABURG</span>
+        <img src="smalllogo.png" class="banner-logo">
+        <span class="banner-item">BAE CON</span>
+        <img src="smalllogo.png" class="banner-logo">
+        <span class="banner-item">BLUE LEMONADE</span>
+        <img src="smalllogo.png" class="banner-logo">
+        <span class="banner-item">DOUBLE TROUBLE</span>
+        <img src="smalllogo.png" class="banner-logo">
+    </div>
+</div>
     </div>
 </div>
 
@@ -755,7 +911,6 @@
     <div class="footer-content">
 <div class="footer-logo-container">
     <img src="smalllogo.png" alt="Burgs Logo" class="footer-logo-image">
-    <div class="footer-subtext">Go Burgs<br>or Go Home.</div>
 </div>
         <nav class="footer-nav">
             <a href="#" class="footer-nav-item">Home</a>
@@ -792,11 +947,31 @@
     });
 
     // Mobile menu toggle
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileMenuItems = document.querySelectorAll('.mobile-menu-item');
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileMenuItems = document.querySelectorAll('.mobile-menu-item');
+const mobileDropdownHeader = document.getElementById('mobileDeliveryHeader');
+const mobileDropdownItems = document.getElementById('mobileDeliveryItems');
+const mobileDropdownLinks = document.querySelectorAll('.mobile-dropdown-item');
 
-    hamburger.addEventListener('click', () => {
+function closeMenu() {
+    const topNav = document.querySelector('.top-navbar');
+    mobileMenuItems.forEach(item => {
+        item.classList.remove('show');
+    });
+    mobileDropdownHeader.classList.remove('show');
+    mobileDropdownItems.classList.remove('open');
+    mobileDropdownLinks.forEach(item => {
+        item.classList.remove('show');
+    });
+    topNav.classList.remove('menu-open');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+        mobileMenu.classList.remove('active');
+    }, 250);
+}
+
+hamburger.addEventListener('click', () => {
     const isActive = mobileMenu.classList.contains('active');
     const topNav = document.querySelector('.top-navbar');
     
@@ -804,34 +979,65 @@
         mobileMenu.classList.add('active');
         topNav.classList.add('menu-open');
         document.body.style.overflow = 'hidden';
-        mobileMenuItems.forEach((item, index) => {
+        let index = 0;
+        mobileMenuItems.forEach((item) => {
             setTimeout(() => {
                 item.classList.add('show');
             }, index * 80);
+            index++;
         });
-    } else {
-        mobileMenuItems.forEach(item => {
-            item.classList.remove('show');
-        });
-        topNav.classList.remove('menu-open');
-        document.body.style.overflow = '';
         setTimeout(() => {
-            mobileMenu.classList.remove('active');
-        }, 250);
+            mobileDropdownHeader.classList.add('show');
+        }, index * 80);
+    } else {
+        closeMenu();
     }
 });
 
-    // Close mobile menu when clicking on a link
-    mobileMenuItems.forEach(item => {
-        item.addEventListener('click', () => {
-            mobileMenuItems.forEach(menuItem => {
-                menuItem.classList.remove('show');
+// Toggle delivery dropdown on mobile
+mobileDropdownHeader.addEventListener('click', () => {
+    const isOpen = mobileDropdownItems.classList.contains('open');
+    if (!isOpen) {
+        mobileDropdownItems.classList.add('open');
+        setTimeout(() => {
+            mobileDropdownLinks.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('show');
+                }, index * 80);
             });
-            setTimeout(() => {
-                mobileMenu.classList.remove('active');
-            }, 300);
+        }, 50);
+    } else {
+        mobileDropdownLinks.forEach(item => {
+            item.classList.remove('show');
         });
+        setTimeout(() => {
+            mobileDropdownItems.classList.remove('open');
+        }, 200);
+    }
+});
+
+// Close menu on window resize if switching to desktop
+let lastWidth = window.innerWidth;
+window.addEventListener('resize', () => {
+    const currentWidth = window.innerWidth;
+    if (lastWidth <= 768 && currentWidth > 768) {
+        closeMenu();
+    }
+    lastWidth = currentWidth;
+});
+
+// Close mobile menu when clicking on a link
+mobileMenuItems.forEach(item => {
+    item.addEventListener('click', () => {
+        closeMenu();
     });
+});
+
+mobileDropdownLinks.forEach(item => {
+    item.addEventListener('click', () => {
+        closeMenu();
+    });
+});
 
     // Fade in animation on scroll
     const observerOptions = {
